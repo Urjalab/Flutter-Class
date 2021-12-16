@@ -12,9 +12,15 @@ class Fruit {
   }
 }
 
-class Apple extends Fruit {}
+class Apple extends Fruit {
+  @override
+  void season() {
+    print('this is apple season');
+    super.season();
+  }
+}
 
 void main() {
-  Fruit apple = Fruit();
-  apple.color;
+  Apple apple = Apple();
+  apple.season();
 }
