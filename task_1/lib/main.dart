@@ -8,17 +8,24 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  //use underscore ahead of a variable to make it private, ex: _color1
+  bool firstPressed = false;
+  bool secondPressed = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Colored Container",
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Task 1'),
+          centerTitle: true,
+          //two types of parameters => unnamed and named parameters
+          //unnamed parameters are always required and should be written in order.
+          title: const Text('Color Changing App'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,24 +34,51 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  height: 100,
                   width: 100,
-                  color: Colors.red,
+                  height: 100,
+                  color: firstPressed ? Colors.red : Colors.grey,
+                  alignment: Alignment.center,
+                  child: Text(
+                    firstPressed ? "Red" : "Grey",
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
                 Container(
-                  height: 100,
                   width: 100,
-                  color: Colors.red,
+                  height: 100,
+                  color: secondPressed ? Colors.teal : Colors.black,
+                  alignment: Alignment.center,
+                  child: Text(
+                    secondPressed ? "Yellow" : "Black",
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
+            ),
+            Container(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                    onPressed: () {}, child: const Text('Change Color 1')),
+                    onPressed: () {
+                      setState(() {
+                        firstPressed = !firstPressed;
+                      });
+                    },
+                    child: Text(firstPressed
+                        ? "Revert Changes?"
+                        : "Change it to Red?")),
                 ElevatedButton(
-                    onPressed: () {}, child: const Text('Change Color 2'))
+                    onPressed: () {
+                      setState(() {
+                        secondPressed = !secondPressed;
+                      });
+                    },
+                    child: Text(secondPressed
+                        ? "Revert Changes?"
+                        : "Change it to Teal?")),
               ],
             )
           ],
