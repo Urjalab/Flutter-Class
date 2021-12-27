@@ -43,11 +43,11 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
                 title: const Text(
-                  '9846856023',
+                  '123456789',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 onTap: () {
-                  launch("tel:9846856023");
+                  launch("tel:123456789");
                 },
               ),
             ),
@@ -60,11 +60,11 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
                 title: const Text(
-                  'parajuliamit@gmail.com',
+                  'xyz@gmail.com',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 onTap: () {
-                  launch('mailto:parajuliamit@gmail.com');
+                  launch('mailto:xyz@gmail.com');
                 },
               ),
             )
