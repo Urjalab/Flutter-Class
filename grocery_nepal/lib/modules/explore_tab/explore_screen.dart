@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+
+import 'widgets/search_bar.dart';
+import 'widgets/category_bar.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -8,9 +9,14 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Explore Screen'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Pokhara, Nepal'),
+        ),
+        body: Column(
+          children: [
+            SearchBar(),
+            CategoryBar(),
+          ],
+        ));
   }
 }

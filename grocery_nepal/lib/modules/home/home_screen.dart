@@ -24,6 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen()
   ];
 
+  BottomNavigationBarItem _bottomNavigationBarItem(
+      IconData icon, String label) {
+    return BottomNavigationBarItem(icon: Icon(icon), label: label);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,14 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedItemColor: greenColor,
           unselectedItemColor: greyColor,
           items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.grid_view), label: 'Explore'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: 'Cart'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.receipt_long_outlined), label: 'My Orders'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline), label: 'Profile')
+            _bottomNavigationBarItem(Icons.grid_view, 'Explorer'),
+            _bottomNavigationBarItem(Icons.shopping_cart_outlined, 'Cart'),
+            _bottomNavigationBarItem(Icons.receipt_long_outlined, 'My Orders'),
+            _bottomNavigationBarItem(Icons.person_outlined, 'Profile'),
           ]),
       body: screens[_selectedIndex],
     );
