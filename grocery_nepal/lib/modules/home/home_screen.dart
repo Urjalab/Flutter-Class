@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedItemColor: greenColor,
           unselectedItemColor: greyColor,
           items: [
-            _bottomNavigationBarItem(Icons.grid_view, 'Explorer'),
+            _bottomNavigationBarItem(Icons.grid_view, 'Explore'),
             _bottomNavigationBarItem(Icons.shopping_cart_outlined, 'Cart'),
             _bottomNavigationBarItem(Icons.receipt_long_outlined, 'My Orders'),
             _bottomNavigationBarItem(Icons.person_outlined, 'Profile'),

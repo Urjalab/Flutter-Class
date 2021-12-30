@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'widgets/search_bar.dart';
 import 'widgets/category_bar.dart';
+import 'widgets/product_tile.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class ExploreScreen extends StatelessWidget {
           children: [
             SearchBar(),
             CategoryBar(),
+            ProductTile(),
           ],
         ));
   }
