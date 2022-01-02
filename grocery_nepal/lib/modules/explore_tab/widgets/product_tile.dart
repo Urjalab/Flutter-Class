@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_nepal/constants.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -10,17 +11,26 @@ class ProductTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
+          color: Colors.grey.shade50,
+          borderRadius: BorderRadius.circular(10),
+          // border: Border.all(color: greyColor),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade300,
+                offset: const Offset(1, 1),
+                spreadRadius: 1,
+                blurRadius: 2)
+          ]),
       height: 180,
-      width: 140,
+      width: 130,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Image.asset(
-              'assets/images/dummy_image.png',
-              height: 90,
-              width: 90,
+          Expanded(
+            child: Center(
+              child: Image.asset(
+                'assets/images/dummy_image.png',
+              ),
             ),
           ),
           const Text(
@@ -32,10 +42,22 @@ class ProductTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Rs 125'),
-              ElevatedButton(
-                onPressed: () {},
-                child: Icon(Icons.add),
+              const Text('Rs 125'),
+              InkWell(
+                onTap: () {
+                  print('button pressed');
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 5),
+                  decoration: BoxDecoration(
+                      color: greenColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.all(5),
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
               )
             ],
           )
