@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/product.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
     Key? key,
+    required this.product,
   }) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           color: Colors.grey.shade50,
           borderRadius: BorderRadius.circular(10),
@@ -22,30 +27,34 @@ class ProductTile extends StatelessWidget {
                 blurRadius: 2)
           ]),
       height: 180,
-      width: 130,
+      width: 140,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Center(
               child: Image.asset(
-                'assets/images/dummy_image.png',
+                product.image,
               ),
             ),
           ),
-          const Text(
-            'Cabbage',
+          Text(
+            product.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: const TextStyle(fontWeight: FontWeight.w600),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Rs 125'),
+              Text('Rs ${product.price}'),
               InkWell(
                 onTap: () {
-                  print('button pressed');
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Added to cart.'),
+                    backgroundColor: greenColor,
+                    duration: Duration(milliseconds: 1200),
+                  ));
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 5),

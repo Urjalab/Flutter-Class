@@ -16,8 +16,9 @@ class ExploreScreen extends StatelessWidget {
         body: Column(
           children: [
             SearchBar(),
-            CategoryBar(),
-            ProductTile(),
+            Expanded(
+              child: CategoryBar(),
+            )
           ],
         ));
   }
