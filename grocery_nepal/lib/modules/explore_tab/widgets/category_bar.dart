@@ -113,7 +113,7 @@ class _CategoryBarState extends State<CategoryBar> {
                 })),
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: getProducts(),
         ))
       ],
