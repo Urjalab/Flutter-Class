@@ -4,6 +4,7 @@ class Product {
   String image;
   String description;
   String category;
+  String unit;
   int price;
 
   Product({
@@ -12,6 +13,7 @@ class Product {
     required this.image,
     required this.description,
     required this.category,
+    required this.unit,
     required this.price,
   });
 }

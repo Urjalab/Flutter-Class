@@ -20,9 +20,11 @@ final List<Product> products = [
       image: 'assets/images/dummy_image.png',
       category: 'Vegetables',
       price: 100,
+      unit: '1 kg',
       description: 'This is healthy'),
   Product(
       id: 2,
+      unit: '2 kg',
       name: 'Apple',
       image: 'assets/images/dummy_image.png',
       category: 'Fruits',
@@ -30,6 +32,7 @@ final List<Product> products = [
       description: 'This is healthy'),
   Product(
       id: 3,
+      unit: '500gm',
       name: 'Chicken',
       image: 'assets/images/dummy_image.png',
       category: 'Meat',
@@ -37,12 +40,14 @@ final List<Product> products = [
       description: 'This is healthy'),
   Product(
       id: 4,
+      unit: '1pc',
       name: 'Trout',
       image: 'assets/images/dummy_image.png',
       category: 'Fish',
       price: 100,
       description: 'This is healthy'),
   Product(
+      unit: '1kg',
       id: 5,
       name: 'Broccoli',
       image: 'assets/images/dummy_image.png',

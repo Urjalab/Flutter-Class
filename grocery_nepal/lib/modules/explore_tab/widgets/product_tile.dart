@@ -44,10 +44,17 @@ class ProductTile extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
+          Text(
+            product.unit,
+            style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Rs ${product.price}'),
+              Text(
+                'Rs ${product.price}',
+                style: const TextStyle(fontSize: 16),
+              ),
               InkWell(
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
