@@ -47,7 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
             _bottomNavigationBarItem(Icons.receipt_long_outlined, 'My Orders'),
             _bottomNavigationBarItem(Icons.person_outlined, 'Profile'),
           ]),
-      body: screens[_selectedIndex],
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: screens,
+      ),
     );
   }
 }
