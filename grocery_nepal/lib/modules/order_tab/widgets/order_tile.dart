@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order_item.dart';
 
 class OrderTile extends StatelessWidget {
-  const OrderTile({Key? key}) : super(key: key);
+  final Order order;
+  const OrderTile(this.order, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +26,23 @@ class OrderTile extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                '#1234',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                '#${order.id}',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Text(
-                '19th Jan 2022',
-                style: TextStyle(color: greyColor),
+                order.date,
+                style: const TextStyle(color: greyColor),
               ),
               Text(
-                'Rs 250',
-                style: TextStyle(color: greenColor, fontSize: 16),
+                'Rs ${order.total}',
+                style: const TextStyle(color: greenColor, fontSize: 16),
               ),
               Text(
-                'Processing',
-                style: TextStyle(color: greyColor),
+                order.status,
+                style: const TextStyle(color: greyColor),
               ),
             ],
           ),

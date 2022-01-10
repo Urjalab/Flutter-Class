@@ -1,9 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order_item.dart';
 import 'package:grocery_nepal/modules/order_tab/widgets/order_tile.dart';
+import 'package:grocery_nepal/modules/order_tab/widgets/status_bar.dart';
 
-class OrderScreen extends StatelessWidget {
+final List<Order> orders = List.generate(
+    20,
+    (index) => Order(
+        id: index,
+        date: DateTime.now().toString(),
+        status: (index % 5) == 0
+            ? 'Processing'
+            : (index % 4) == 0
+                ? 'Cancelled'
+                : (index % 3) == 0
+                    ? 'Delivered'
+                    : 'Pending',
+        total: 100 * index));
+
+class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  int _selectedStatus = 0;
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  Widget getOrders(String status) {
+    List<Order> selectedOrders = [];
+    if (status == 'All') {
+      selectedOrders = orders;
+    } else {
+      for (Order order in orders) {
+        if (order.status == status) {
+          selectedOrders.add(order);
+        }
+      }
+    }
+    return ListView.builder(
+        itemCount: selectedOrders.length,
+        itemBuilder: (context, index) {
+          return OrderTile(selectedOrders[index]);
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +60,40 @@ class OrderScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            // Container(
-            //   child: Text('All'),
-            //   color: greenColor,
-            // ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return OrderTile();
-                    }),
-              ),
+            StatusBar(
+              onPress: (int index) {
+                setState(() {
+                  _selectedStatus = index;
+                });
+                _pageController.jumpToPage(
+                  index,
+                );
+              },
+              selectedIndex: _selectedStatus,
             ),
+            Expanded(
+                child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _selectedStatus = index;
+                });
+              },
+              children: [
+                getOrders('All'),
+                getOrders('Pending'),
+                getOrders('Processing'),
+                getOrders('Delivered'),
+                getOrders('Cancelled'),
+              ],
+            )),
           ],
         ));
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }
