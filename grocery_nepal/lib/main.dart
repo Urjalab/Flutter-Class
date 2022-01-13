@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
+import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
 import 'package:grocery_nepal/modules/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,7 +37,13 @@ class MyApp extends StatelessWidget {
             // ),
             centerTitle: true),
       ),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen()
+      },
     );
   }
 }
