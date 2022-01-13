@@ -12,9 +12,14 @@ class LogOutButton extends StatelessWidget {
     return MaterialButton(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      onPressed: () {},
+      onPressed: () {
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return LoginScreen();
+        // }));
+        Navigator.pushNamed(context, '/login');
+      },
       child: SizedBox(
-        width: MediaQuery.of(context).size.width - 100,
+        width: MediaQuery.of(context).size.width * 0.75,
         child: Stack(
           children: const [
             Center(
