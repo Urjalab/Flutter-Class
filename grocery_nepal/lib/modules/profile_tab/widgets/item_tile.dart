@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class ItemTile extends StatelessWidget {
   final IconData icon;
   final String label;
-  // final VoidCallback onPress;
+  final VoidCallback onPress;
   const ItemTile({
     Key? key,
     required this.icon,
     required this.label,
-    // required this.onPress,
+    required this.onPress,
   }) : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class ItemTile extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          // onTap: onPress,
+          onTap: onPress,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
