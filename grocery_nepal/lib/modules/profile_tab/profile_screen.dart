@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/modules/auth/change_password/change_password_screen.dart';
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
-import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
 
+import 'about_us/about_us_screen.dart';
+import 'edit_profile/edit_profile_screen.dart';
 import 'widgets/item_tile.dart';
 import 'widgets/log_out_button.dart';
 import 'widgets/user_detail_bar.dart';
@@ -37,7 +38,11 @@ class ProfileScreen extends StatelessWidget {
             ItemTile(
               icon: Icons.edit_outlined,
               label: 'Edit Profile',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return EditProfileScreen();
+                }));
+              },
             ),
             ItemTile(
               icon: Icons.lock_outline,
