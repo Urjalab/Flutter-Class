@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
-import 'package:grocery_nepal/modules/profile_tab/widgets/item_tile.dart';
+import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
 
+import 'widgets/item_tile.dart';
 import 'widgets/log_out_button.dart';
 import 'widgets/user_detail_bar.dart';
 
@@ -34,8 +34,8 @@ class ProfileScreen extends StatelessWidget {
               onPress: () {},
             ),
             ItemTile(
-              icon: Icons.feed_outlined,
-              label: 'My Details',
+              icon: Icons.edit_outlined,
+              label: 'Edit Profile',
               onPress: () {},
             ),
             ItemTile(
@@ -46,7 +46,11 @@ class ProfileScreen extends StatelessWidget {
             ItemTile(
               icon: Icons.info_outline,
               label: 'About Us',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AboutUs();
+                }));
+              },
             ),
             ItemTile(
               icon: Icons.feedback_outlined,
