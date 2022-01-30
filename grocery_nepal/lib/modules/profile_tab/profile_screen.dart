@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/modules/auth/change_password/change_password_screen.dart';
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
+import 'package:grocery_nepal/modules/favorites/favorites_screen.dart';
 
 import 'about_us/about_us_screen.dart';
 import 'edit_profile/edit_profile_screen.dart';
@@ -33,7 +34,11 @@ class ProfileScreen extends StatelessWidget {
             ItemTile(
               icon: Icons.favorite_outline,
               label: 'Favorites',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return FavoritesScreen();
+                }));
+              },
             ),
             ItemTile(
               icon: Icons.edit_outlined,
