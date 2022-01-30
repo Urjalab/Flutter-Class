@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_nepal/modules/auth/change_password/change_password_screen.dart';
 import 'package:grocery_nepal/modules/contact_us/contact_us_screen.dart';
 import 'package:grocery_nepal/modules/profile_tab/about_us/about_us_screen.dart';
 
@@ -41,7 +42,11 @@ class ProfileScreen extends StatelessWidget {
             ItemTile(
               icon: Icons.lock_outline,
               label: 'Change Password',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ChangePasswordScreen();
+                }));
+              },
             ),
             ItemTile(
               icon: Icons.info_outline,
