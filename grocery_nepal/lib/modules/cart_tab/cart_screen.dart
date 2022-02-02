@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/data/models/cart_item.dart';
 import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/modules/checkout/checkout_screen.dart';
+import 'package:grocery_nepal/widgets/custom_button.dart';
 
 import 'widgets/cart_item_tile.dart';
 
@@ -58,11 +60,25 @@ class CartScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: ListView.builder(
-            itemCount: cartItems.length,
-            itemBuilder: (context, index) {
-              return CartItemTile(cartItems[index]);
-            },
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: cartItems.length,
+                  itemBuilder: (context, index) {
+                    return CartItemTile(cartItems[index]);
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: CustomButton("Checkout (Rs. 1200)", () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return CheckoutScreen();
+                  }));
+                }),
+              ),
+            ],
           ),
         ));
   }
