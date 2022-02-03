@@ -1,28 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/data/models/product.dart';
-import 'package:grocery_nepal/modules/cart_tab/widgets/product_counter.dart';
-
+import 'product_counter.dart';
 import 'image_container.dart';
+import 'product_detail_container.dart';
 
 class DetailBody extends StatelessWidget {
-  final Product product;
-
   const DetailBody({required this.product});
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ImageContainer(
-            image: product.image,
+        child: Padding(
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ImageContainer(image: product.image),
+          Text(
+            product.name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          Text(product.name),
-          Text(product.unit),
-          ProductCounter(1)
-        ]),
+          Text(
+            '1 ${product.unit}',
+            style: const TextStyle(color: Colors.grey, fontSize: 16),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ProductCounter(1),
+              Text(
+                'Rs ${product.price}',
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          ProductDetailContainer(description: product.description)
+        ],
       ),
-    );
+    ));
   }
 }

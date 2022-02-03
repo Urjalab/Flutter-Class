@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../app_controller.dart';
 import '../../../constants.dart';
 
-class LogOutButton extends StatelessWidget {
-  const LogOutButton({
+class LoginButton extends StatelessWidget {
+  const LoginButton({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +14,7 @@ class LogOutButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onPressed: () {
-        Get.find<AppController>().logout();
+        Get.find<AppController>().login();
         // Navigator.push(context, MaterialPageRoute(builder: (context) {
         //   return LoginScreen();
         // }));
@@ -27,19 +26,19 @@ class LogOutButton extends StatelessWidget {
           children: const [
             Center(
               child: Text(
-                'Log Out',
-                style: TextStyle(color: greenColor, fontSize: 17),
+                'Login',
+                style: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ),
             Icon(
-              Icons.logout,
-              color: greenColor,
+              Icons.login_outlined,
+              color: Colors.white,
             )
           ],
         ),
       ),
-      color: Colors.grey.shade300,
-      elevation: 0,
+      color: greenColor,
+      elevation: 3,
     );
   }
 }

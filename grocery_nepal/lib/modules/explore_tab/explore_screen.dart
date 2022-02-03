@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/modules/explore_tab/explore_tab_controller.dart';
+import 'package:grocery_nepal/widgets/widgets.dart';
 
 import 'widgets/search_bar.dart';
 import 'widgets/category_bar.dart';
@@ -13,25 +14,15 @@ class ExploreScreen extends StatelessWidget {
     final controller = Get.put(ExploreTabController());
     return Scaffold(
         appBar: AppBar(
-          title: Text('Pokhara, Nepal'),
+          title: const Text('Grocery Nepal'),
         ),
         body: Obx(
           () => controller.isLoading.isTrue
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const Loading()
               : controller.isError.isTrue
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(controller.errorMessage),
-                          ElevatedButton(
-                              child: const Text('Try Again'),
-                              onPressed: controller.getProducts),
-                        ],
-                      ),
-                    )
+                  ? ErrorPage(
+                      errorMessage: controller.errorMessage,
+                      onRetry: controller.getProducts)
                   : Column(
                       children: [
                         SearchBar(),
