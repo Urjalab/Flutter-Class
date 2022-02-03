@@ -65,7 +65,7 @@ class OrderSummary extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "Total: Rs. 5000",
+              "Total: Rs 5000",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),

@@ -17,12 +17,12 @@ class InputField extends StatelessWidget {
     return TextField(
       keyboardType: inputType,
       textInputAction: textInputAction,
-      style: const TextStyle(fontWeight: FontWeight.bold),
+      // style: const TextStyle(fontWeight: FontWeight.bold),
       cursorColor: Colors.black,
       decoration: InputDecoration(
         labelText: label,
         labelStyle:
-            const TextStyle(color: greenColor, fontWeight: FontWeight.normal),
+            const TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: greenColor, width: 2),
         ),

@@ -19,7 +19,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return TextField(
       controller: widget.controller,
       obscureText: !_isVisible,
-      style: const TextStyle(fontWeight: FontWeight.bold),
+      // style: const TextStyle(fontWeight: FontWeight.bold),
       cursorColor: Colors.black,
       decoration: InputDecoration(
         suffixIcon: InkWell(
@@ -35,7 +35,7 @@ class _PasswordFieldState extends State<PasswordField> {
         ),
         labelText: widget.label,
         labelStyle:
-            const TextStyle(color: greenColor, fontWeight: FontWeight.normal),
+            const TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: greenColor, width: 2),
         ),

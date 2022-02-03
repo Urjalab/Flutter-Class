@@ -27,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
               const InputField(
                 'Email',
                 inputType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
               ),
               const SizedBox(
                 height: 20,
