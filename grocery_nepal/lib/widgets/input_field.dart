@@ -6,15 +6,18 @@ import '../constants.dart';
 class InputField extends StatelessWidget {
   const InputField(this.label,
       {this.inputType = TextInputType.text,
-      this.textInputAction = TextInputAction.done});
+      this.textInputAction = TextInputAction.done,
+      this.controller});
 
   final String label;
   final TextInputType inputType;
   final TextInputAction textInputAction;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       keyboardType: inputType,
       textInputAction: textInputAction,
       // style: const TextStyle(fontWeight: FontWeight.bold),

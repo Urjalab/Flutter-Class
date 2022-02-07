@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
 import 'package:grocery_nepal/widgets/input_field.dart';
+import 'package:grocery_nepal/widgets/loading.dart';
 import 'package:grocery_nepal/widgets/password_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import 'login_controller.dart';
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  late final TextEditingController _passwordController;
-
-  @override
-  void initState() {
-    super.initState();
-    _passwordController = TextEditingController();
-  }
-
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -48,8 +38,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                const InputField(
+                InputField(
                   "Email",
+                  controller: controller.emailController,
                   inputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                 ),
@@ -58,15 +49,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 PasswordField(
                   'Password',
-                  controller: _passwordController,
+                  controller: controller.passwordController,
                 ),
                 const SizedBox(
                   height: 50,
                 ),
-                Center(
-                    child: CustomButton('Login', () {
-                  Navigator.pop(context);
-                })),
+                Obx(
+                  () => controller.isLoading.isTrue
+                      ? const Loading(
+                          size: 100,
+                        )
+                      : Center(
+                          child: CustomButton('Login', () {
+                          controller.login();
+                        })),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -88,11 +85,5 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ));
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
   }
 }
