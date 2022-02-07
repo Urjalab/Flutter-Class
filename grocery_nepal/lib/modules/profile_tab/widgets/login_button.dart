@@ -27,18 +27,18 @@ class LoginButton extends StatelessWidget {
             Center(
               child: Text(
                 'Login',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+                style: TextStyle(color: greenColor, fontSize: 17),
               ),
             ),
             Icon(
               Icons.login_outlined,
-              color: Colors.white,
+              color: greenColor,
             )
           ],
         ),
       ),
-      color: greenColor,
-      elevation: 3,
+      color: Colors.grey.shade300,
+      elevation: 0,
     );
   }
 }
