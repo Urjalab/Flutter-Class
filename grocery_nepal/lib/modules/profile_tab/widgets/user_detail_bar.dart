@@ -45,20 +45,22 @@ class UserDetailBar extends StatelessWidget {
                           appController.getUserProfile(token ?? '');
                         },
                         child: const Text('Try Again'))
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            appController.userProfile!.name ?? '',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                          Text(
-                            appController.userProfile!.email ?? '',
-                            style: const TextStyle(color: greyColor),
-                          ),
-                        ],
-                      ),
+                    : GetBuilder<AppController>(builder: (controller) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.userProfile!.name ?? '',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            Text(
+                              controller.userProfile!.email ?? '',
+                              style: const TextStyle(color: greyColor),
+                            ),
+                          ],
+                        );
+                      }),
           )
         ],
       ),

@@ -38,6 +38,11 @@ class AppController extends GetxController {
     isProfileLoading(false);
   }
 
+  void updateProfile(UserProfile user) {
+    userProfile = user;
+    update();
+  }
+
   void login(LoginResponse loginResponse) {
     isLoggedIn(true);
     userProfile = UserProfile(

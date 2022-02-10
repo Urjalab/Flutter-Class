@@ -56,10 +56,7 @@ class ProfileScreen extends StatelessWidget {
                             icon: Icons.edit_outlined,
                             label: 'Edit Profile',
                             onPress: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return EditProfileScreen();
-                              }));
+                              Get.to(() => EditProfileScreen());
                             },
                           ),
                           ItemTile(
