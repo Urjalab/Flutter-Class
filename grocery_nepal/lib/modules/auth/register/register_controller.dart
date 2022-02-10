@@ -3,25 +3,36 @@ import 'package:get/get.dart';
 import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/data/api/auth_api.dart';
 
-class LoginController extends GetxController {
+class RegisterController extends GetxController {
   final isLoading = false.obs;
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  Future<void> login() async {
+  Future<void> register() async {
+    String name = nameController.text.trim();
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
+    String confirmPassword = confirmPasswordController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
+    if (name.isEmpty || email.isEmpty || password.isEmpty) {
       Get.rawSnackbar(message: 'All fields are required');
+      return;
+    }
+
+    if (confirmPassword != password) {
+      Get.rawSnackbar(message: 'Password does not match.');
       return;
     }
     isLoading(true);
     try {
-      var response = await AuthApi.login(username: email, password: password);
+      var response =
+          await AuthApi.register(name: name, email: email, password: password);
       isLoading(false);
       Get.back();
-      Get.rawSnackbar(message: 'Login Successful');
+      Get.back();
+      Get.rawSnackbar(message: 'Registration Successful');
       Get.find<AppController>().login(response);
     } catch (e) {
       isLoading(false);
@@ -39,7 +50,9 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
+    nameController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     emailController.dispose();
     super.onClose();
   }

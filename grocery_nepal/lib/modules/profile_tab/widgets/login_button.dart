@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../app_controller.dart';
+import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 import '../../../constants.dart';
 
 class LoginButton extends StatelessWidget {
@@ -14,11 +14,12 @@ class LoginButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onPressed: () {
-        Get.find<AppController>().login();
+        // Get.find<AppController>().login();
         // Navigator.push(context, MaterialPageRoute(builder: (context) {
         //   return LoginScreen();
         // }));
         // Navigator.pushNamed(context, '/login');
+        Get.to(() => LoginScreen());
       },
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.75,

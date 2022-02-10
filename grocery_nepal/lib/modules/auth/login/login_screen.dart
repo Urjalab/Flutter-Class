@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
 import 'package:grocery_nepal/widgets/input_field.dart';
 import 'package:grocery_nepal/widgets/loading.dart';
@@ -73,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                     const Text('Not Registered?'),
                     TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/register');
+                          Get.to(() => RegisterScreen());
                         },
                         child: const Text(
                           'Register Now',

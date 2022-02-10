@@ -6,14 +6,17 @@ import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
 import 'package:grocery_nepal/modules/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var sharedPrefs = await SharedPreferences.getInstance();
+  runApp(MyApp(sharedPrefs));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  const MyApp(this.sharedPreferences, {Key? key}) : super(key: key);
+  final SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -40,13 +43,13 @@ class MyApp extends StatelessWidget {
       ),
       // home: const HomeScreen(),
       initialBinding: BindingsBuilder(() {
-        Get.put(AppController(), permanent: true);
+        Get.put(AppController(sharedPreferences), permanent: true);
       }),
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
         '/login': (context) => LoginScreen(),
-        '/register': (context) => const RegisterScreen()
+        '/register': (context) => RegisterScreen()
       },
     );
   }

@@ -1,30 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/widgets/custom_button.dart';
-import 'package:grocery_nepal/widgets/input_field.dart';
-import 'package:grocery_nepal/widgets/password_field.dart';
+import 'package:get/get.dart';
+import 'register_controller.dart';
+import 'package:grocery_nepal/widgets/widgets.dart';
 
 import '../../../constants.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  late final TextEditingController _passwordController;
-  late final TextEditingController _confirmPasswordController;
-
-  @override
-  void initState() {
-    super.initState();
-    _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
-  }
-
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -51,49 +35,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                const InputField(
+                InputField(
                   "Full Name",
                   inputType: TextInputType.name,
                   textInputAction: TextInputAction.next,
+                  controller: controller.nameController,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                const InputField(
+                InputField(
                   "Email",
                   inputType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  controller: controller.emailController,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 PasswordField(
                   'Password',
-                  controller: _passwordController,
+                  controller: controller.passwordController,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 PasswordField(
                   'Confirm Password',
-                  controller: _confirmPasswordController,
+                  controller: controller.confirmPasswordController,
                 ),
                 const SizedBox(
                   height: 50,
                 ),
-                Center(
-                    child: CustomButton('Register', () {
-                  if (_passwordController.text.trim().isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Password can\'t be empty.')));
-                  } else if (_passwordController.text.trim() ==
-                      _confirmPasswordController.text.trim()) {
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Password didn\'t match.')));
-                  }
-                })),
+                Obx(() => controller.isLoading.isTrue
+                    ? const Loading(
+                        size: 100,
+                      )
+                    : Center(
+                        child: CustomButton('Register', controller.register))),
                 const SizedBox(
                   height: 20,
                 ),
@@ -115,12 +94,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ));
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
   }
 }
