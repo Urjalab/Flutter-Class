@@ -1,16 +1,12 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/user_profile.dart';
 import 'package:http/http.dart' as http;
 
-import '../../app_controller.dart';
-
 class UserApi {
-  static Future<UserProfile> getProfile() async {
+  static Future<UserProfile> getProfile(String token) async {
     final url = baseUrl + "users/profile/";
-    final token = Get.find<AppController>().sharedPreference.getString('token');
     print(token);
     final response = await http.get(
       Uri.parse(url),

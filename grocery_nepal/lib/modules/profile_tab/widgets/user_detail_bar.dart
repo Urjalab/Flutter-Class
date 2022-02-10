@@ -37,7 +37,13 @@ class UserDetailBar extends StatelessWidget {
                   )
                 : appController.isNoInternet.isTrue
                     ? ElevatedButton(
-                        onPressed: appController.getUserProfile,
+                        onPressed: () {
+                          String? token =
+                              appController.sharedPreference.getString(
+                            'token',
+                          );
+                          appController.getUserProfile(token ?? '');
+                        },
                         child: const Text('Try Again'))
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

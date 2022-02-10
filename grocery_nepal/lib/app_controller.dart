@@ -14,7 +14,7 @@ class AppController extends GetxController {
       isLoggedIn(false);
     } else {
       isLoggedIn(true);
-      getUserProfile();
+      getUserProfile(token);
     }
   }
 
@@ -22,11 +22,11 @@ class AppController extends GetxController {
   final isProfileLoading = false.obs;
   final isNoInternet = false.obs;
 
-  void getUserProfile() async {
+  void getUserProfile(String token) async {
     isProfileLoading(true);
     isNoInternet(false);
     try {
-      userProfile = await UserApi.getProfile();
+      userProfile = await UserApi.getProfile(token);
     } catch (e) {
       print(e);
       if (e.toString().contains('SocketException')) {
