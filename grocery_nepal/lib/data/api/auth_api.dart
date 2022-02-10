@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/login_request.dart';
-import 'package:grocery_nepal/data/models/login_response.dart';
-import 'package:grocery_nepal/data/models/register_request.dart';
+import 'package:grocery_nepal/data/models/auth/login_request.dart';
+import 'package:grocery_nepal/data/models/auth/login_response.dart';
+import 'package:grocery_nepal/data/models/auth/register_request.dart';
 import 'package:http/http.dart' as http;
 
 import '../../app_controller.dart';

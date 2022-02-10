@@ -1,5 +1,3 @@
-import 'package:grocery_nepal/data/models/cart_item.dart';
-
 class Order {
   int id;
   String date;

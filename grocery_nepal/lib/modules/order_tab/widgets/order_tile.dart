@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/order_item.dart';
+import 'package:grocery_nepal/data/models/product/order_item.dart';
 import 'package:grocery_nepal/modules/order_details/order_details_screen.dart';
 
 class OrderTile extends StatelessWidget {

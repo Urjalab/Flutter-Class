@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/product.dart';
+import 'package:grocery_nepal/data/models/product/product.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({Key? key}) : super(key: key);

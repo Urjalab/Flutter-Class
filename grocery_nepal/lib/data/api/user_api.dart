@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/user_profile.dart';
+import 'package:grocery_nepal/data/models/user/user_profile.dart';
 import 'package:http/http.dart' as http;
 
 class UserApi {

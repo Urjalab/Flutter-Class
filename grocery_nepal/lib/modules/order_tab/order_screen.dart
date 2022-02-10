@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/app_controller.dart';
-import 'package:grocery_nepal/data/models/order_item.dart';
-import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
+import 'package:grocery_nepal/data/models/product/order_item.dart';
 import 'package:grocery_nepal/modules/order_tab/widgets/order_tile.dart';
 import 'package:grocery_nepal/modules/order_tab/widgets/status_bar.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/login_button.dart';
-import 'package:grocery_nepal/widgets/custom_button.dart';
 
 final List<Order> orders = List.generate(
     20,

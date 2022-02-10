@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:grocery_nepal/data/api/user_api.dart';
-import 'package:grocery_nepal/data/models/login_response.dart';
-import 'package:grocery_nepal/data/models/user_profile.dart';
+import 'package:grocery_nepal/data/models/auth/login_response.dart';
+import 'package:grocery_nepal/data/models/user/user_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends GetxController {

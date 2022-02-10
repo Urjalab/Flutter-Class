@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/cart_item.dart';
+import 'package:grocery_nepal/data/models/product/cart_item.dart';
 import '../../../constants.dart';
 import 'product_counter.dart';
 
