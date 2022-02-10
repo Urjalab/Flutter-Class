@@ -63,36 +63,39 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
         body: Obx(
           () => Get.find<AppController>().isLoggedIn.isTrue
-              ? Column(
-                  children: [
-                    StatusBar(
-                      onPress: (int index) {
-                        setState(() {
-                          _selectedStatus = index;
-                        });
-                        _pageController.jumpToPage(
-                          index,
-                        );
-                      },
-                      selectedIndex: _selectedStatus,
-                    ),
-                    Expanded(
-                        child: PageView(
-                      controller: _pageController,
-                      onPageChanged: (index) {
-                        setState(() {
-                          _selectedStatus = index;
-                        });
-                      },
-                      children: [
-                        getOrders('All'),
-                        getOrders('Pending'),
-                        getOrders('Processing'),
-                        getOrders('Delivered'),
-                        getOrders('Cancelled'),
-                      ],
-                    )),
-                  ],
+              ? RefreshIndicator(
+                  onRefresh: () async {},
+                  child: Column(
+                    children: [
+                      StatusBar(
+                        onPress: (int index) {
+                          setState(() {
+                            _selectedStatus = index;
+                          });
+                          _pageController.jumpToPage(
+                            index,
+                          );
+                        },
+                        selectedIndex: _selectedStatus,
+                      ),
+                      Expanded(
+                          child: PageView(
+                        controller: _pageController,
+                        onPageChanged: (index) {
+                          setState(() {
+                            _selectedStatus = index;
+                          });
+                        },
+                        children: [
+                          getOrders('All'),
+                          getOrders('Pending'),
+                          getOrders('Processing'),
+                          getOrders('Delivered'),
+                          getOrders('Cancelled'),
+                        ],
+                      )),
+                    ],
+                  ),
                 )
               : Center(
                   child: Column(
