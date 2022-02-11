@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
-import 'package:grocery_nepal/data/models/product/order_item.dart';
+import 'package:grocery_nepal/data/models/order/order.dart';
 import 'package:grocery_nepal/modules/order_details/order_details_screen.dart';
 
 class OrderTile extends StatelessWidget {
@@ -39,7 +39,7 @@ class OrderTile extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  order.date,
+                  order.dateOrdered ?? '',
                   style: const TextStyle(color: greyColor),
                 ),
                 Text(
@@ -47,7 +47,7 @@ class OrderTile extends StatelessWidget {
                   style: const TextStyle(color: greenColor, fontSize: 16),
                 ),
                 Text(
-                  order.status,
+                  order.status ?? '',
                   style: const TextStyle(color: greyColor),
                 ),
               ],

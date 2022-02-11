@@ -1,24 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/app_controller.dart';
-import 'package:grocery_nepal/data/models/product/order_item.dart';
+import 'package:grocery_nepal/data/models/order/order.dart';
+import 'package:grocery_nepal/modules/order_tab/order_controller.dart';
 import 'package:grocery_nepal/modules/order_tab/widgets/order_tile.dart';
 import 'package:grocery_nepal/modules/order_tab/widgets/status_bar.dart';
 import 'package:grocery_nepal/modules/profile_tab/widgets/login_button.dart';
-
-final List<Order> orders = List.generate(
-    20,
-    (index) => Order(
-        id: index,
-        date: DateTime.now().toString(),
-        status: (index % 5) == 0
-            ? 'Processing'
-            : (index % 4) == 0
-                ? 'Cancelled'
-                : (index % 3) == 0
-                    ? 'Delivered'
-                    : 'Pending',
-        total: 100 * index));
+import 'package:grocery_nepal/widgets/widgets.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -30,7 +18,7 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _selectedStatus = 0;
   late final PageController _pageController;
-
+  final controller = Get.find<OrderController>();
   @override
   void initState() {
     _pageController = PageController();
@@ -40,19 +28,23 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget getOrders(String status) {
     List<Order> selectedOrders = [];
     if (status == 'All') {
-      selectedOrders = orders;
+      selectedOrders = controller.orders;
     } else {
-      for (Order order in orders) {
+      for (Order order in controller.orders) {
         if (order.status == status) {
           selectedOrders.add(order);
         }
       }
     }
-    return ListView.builder(
-        itemCount: selectedOrders.length,
-        itemBuilder: (context, index) {
-          return OrderTile(selectedOrders[index]);
-        });
+    return selectedOrders.isEmpty
+        ? const Center(
+            child: Text('No Orders'),
+          )
+        : ListView.builder(
+            itemCount: selectedOrders.length,
+            itemBuilder: (context, index) {
+              return OrderTile(selectedOrders[index]);
+            });
   }
 
   @override
@@ -63,40 +55,39 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
         body: Obx(
           () => Get.find<AppController>().isLoggedIn.isTrue
-              ? RefreshIndicator(
-                  onRefresh: () async {},
-                  child: Column(
-                    children: [
-                      StatusBar(
-                        onPress: (int index) {
-                          setState(() {
-                            _selectedStatus = index;
-                          });
-                          _pageController.jumpToPage(
-                            index,
-                          );
-                        },
-                        selectedIndex: _selectedStatus,
-                      ),
-                      Expanded(
-                          child: PageView(
-                        controller: _pageController,
-                        onPageChanged: (index) {
-                          setState(() {
-                            _selectedStatus = index;
-                          });
-                        },
-                        children: [
-                          getOrders('All'),
-                          getOrders('Pending'),
-                          getOrders('Processing'),
-                          getOrders('Delivered'),
-                          getOrders('Cancelled'),
-                        ],
-                      )),
-                    ],
-                  ),
-                )
+              ? controller.isLoading.isTrue
+                  ? const Loading()
+                  : Column(
+                      children: [
+                        StatusBar(
+                          onPress: (int index) {
+                            setState(() {
+                              _selectedStatus = index;
+                            });
+                            _pageController.jumpToPage(
+                              index,
+                            );
+                          },
+                          selectedIndex: _selectedStatus,
+                        ),
+                        Expanded(
+                            child: PageView(
+                          controller: _pageController,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _selectedStatus = index;
+                            });
+                          },
+                          children: [
+                            getOrders('All'),
+                            getOrders('Pending'),
+                            getOrders('Processing'),
+                            getOrders('Delivered'),
+                            getOrders('Cancelled'),
+                          ],
+                        )),
+                      ],
+                    )
               : Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

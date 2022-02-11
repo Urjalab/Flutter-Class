@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'modules/order_tab/order_controller.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var sharedPrefs = await SharedPreferences.getInstance();
@@ -43,6 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const HomeScreen(),
       initialBinding: BindingsBuilder(() {
+        Get.put(OrderController());
         Get.put(AppController(sharedPreferences), permanent: true);
       }),
       initialRoute: '/',

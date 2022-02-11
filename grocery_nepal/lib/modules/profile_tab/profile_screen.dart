@@ -63,10 +63,7 @@ class ProfileScreen extends StatelessWidget {
                             icon: Icons.lock_outline,
                             label: 'Change Password',
                             onPress: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return ChangePasswordScreen();
-                              }));
+                              Get.to(() => ChangePasswordScreen());
                             },
                           ),
                         ],

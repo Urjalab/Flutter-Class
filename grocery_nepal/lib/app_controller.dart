@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:grocery_nepal/data/api/user_api.dart';
 import 'package:grocery_nepal/data/models/auth/login_response.dart';
 import 'package:grocery_nepal/data/models/user/user_profile.dart';
+import 'package:grocery_nepal/modules/order_tab/order_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends GetxController {
@@ -27,6 +28,7 @@ class AppController extends GetxController {
     isNoInternet(false);
     try {
       userProfile = await UserApi.getProfile(token);
+      Get.find<OrderController>().getOrders(token);
     } catch (e) {
       print(e);
       if (e.toString().contains('SocketException')) {
@@ -49,10 +51,12 @@ class AppController extends GetxController {
         id: loginResponse.id,
         name: loginResponse.name,
         email: loginResponse.email);
+    Get.find<OrderController>().getOrders(loginResponse.token ?? '');
   }
 
   void logout() {
     sharedPreference.setString('token', '');
+    Get.find<OrderController>().orders.clear();
     isLoggedIn(false);
   }
 }
