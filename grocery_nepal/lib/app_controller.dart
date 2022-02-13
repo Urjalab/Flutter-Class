@@ -45,6 +45,10 @@ class AppController extends GetxController {
     update();
   }
 
+  String getToken() {
+    return sharedPreference.getString('token') ?? '';
+  }
+
   void login(LoginResponse loginResponse) {
     isLoggedIn(true);
     userProfile = UserProfile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/order/order.dart';
 import 'package:grocery_nepal/modules/order_details/order_details_screen.dart';
@@ -11,8 +12,7 @@ class OrderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => OrderDetailsScreen()));
+        Get.to(() => OrderDetailsScreen(), arguments: order.id);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
