@@ -3,6 +3,7 @@ import 'package:grocery_nepal/app_controller.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
 import 'package:grocery_nepal/modules/auth/register/register_screen.dart';
+import 'package:grocery_nepal/modules/favorites/favorites_controller.dart';
 import 'package:grocery_nepal/modules/home/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
       initialBinding: BindingsBuilder(() {
         Get.put(OrderController());
         Get.put(AppController(sharedPreferences), permanent: true);
+        Get.put(FavoritesController(), permanent: true);
       }),
       initialRoute: '/',
       routes: {

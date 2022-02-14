@@ -17,7 +17,7 @@ class ErrorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset('assets/lottie/error.json', width: 150),
+          Lottie.asset('assets/lottie/error.json', width: 150, repeat: false),
           Text(errorMessage),
           ElevatedButton(child: const Text('Try Again'), onPressed: onRetry),
         ],

@@ -20,7 +20,10 @@ class Product {
     this.id = json["id"];
     this.name = json["name"];
     this.description = json["description"];
-    this.price = double.parse(json["price"]);
+    if (json["price"] is double)
+      this.price = json["price"];
+    else
+      this.price = double.parse(json["price"].toString());
     this.image = json["image"];
     this.unit = json["unit"];
     this.category = json["category"];

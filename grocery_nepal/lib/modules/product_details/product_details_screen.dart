@@ -17,7 +17,9 @@ class ProductDetail extends StatelessWidget {
       ),
       body: Column(children: [
         Expanded(child: DetailBody(product: product)),
-        BottomContainer(),
+        BottomContainer(
+          product: product,
+        ),
       ]),
     );
   }
