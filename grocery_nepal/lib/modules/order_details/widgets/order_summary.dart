@@ -16,7 +16,13 @@ class OrderSummary extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
             const SizedBox(
-              height: 10,
+              height: 5,
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            const SizedBox(
+              height: 5,
             ),
             ListView.builder(
                 itemCount: orderDetail.items.length,
@@ -34,8 +40,7 @@ class OrderSummary extends StatelessWidget {
                             Text(
                               "${orderDetail.items[index].product.name} x ${orderDetail.items[index].quantity}",
                             ),
-                            Text(orderDetail.items[index].product.unit
-                                .toString()),
+                            Text(orderDetail.items[index].product.unit),
                           ],
                         ),
                         Text('Rs.' +
