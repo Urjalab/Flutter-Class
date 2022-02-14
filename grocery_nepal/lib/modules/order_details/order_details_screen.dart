@@ -57,7 +57,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                     style: TextStyle(
                                         color: controller.orderDetail!.status ==
                                                 'Delivered'
-                                            ? Colors.black
+                                            ? greenColor
                                             : controller.orderDetail!.status ==
                                                     'Cancelled'
                                                 ? Colors.red
