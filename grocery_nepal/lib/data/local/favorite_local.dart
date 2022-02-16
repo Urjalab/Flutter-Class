@@ -24,13 +24,12 @@ class FavoriteLocal {
     }
   }
 
-  static bool set(List<Product> favorites) {
+  static Future<bool> set(List<Product> favorites) async {
     var data = favorites.map((product) => product.toJson()).toList();
     var valueString = json.encode(data);
     try {
       var prefs = Get.find<AppController>().sharedPreference;
-      prefs.setString(key, valueString);
-      return true;
+      return await prefs.setString(key, valueString);
     } catch (e) {
       print(e);
       return false;

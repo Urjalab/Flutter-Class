@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/favorites/favorites_controller.dart';
+import 'package:grocery_nepal/modules/product_details/product_details_screen.dart';
 import 'package:grocery_nepal/widgets/loading.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -27,6 +28,10 @@ class FavoritesScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
+                            onTap: () {
+                              Get.to(() => ProductDetail(),
+                                  arguments: controller.favorites[index]);
+                            },
                             leading: CachedNetworkImage(
                               imageUrl:
                                   imageUrl + controller.favorites[index].image,

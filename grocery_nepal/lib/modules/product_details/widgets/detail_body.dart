@@ -28,7 +28,7 @@ class DetailBody extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ProductCounter(1),
+              ProductCounter(),
               Text(
                 'Rs ${product.price}',
                 style:
