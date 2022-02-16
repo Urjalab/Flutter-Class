@@ -1,53 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_nepal/data/models/order/cart_item.dart';
-import 'package:grocery_nepal/data/models/product/product.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/app_controller.dart';
+import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/modules/auth/login/login_screen.dart';
+import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 import 'package:grocery_nepal/modules/checkout/checkout_screen.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
-
 import 'widgets/cart_item_tile.dart';
-
-final List<CartItem> cartItems = [
-  CartItem(
-      Product(
-          id: 1,
-          name: 'Cabbage',
-          image: 'assets/images/dummy_image.png',
-          category: 'Vegetables',
-          price: 100,
-          unit: '1 kg',
-          description: 'This is healthy'),
-      5),
-  CartItem(
-      Product(
-          id: 1,
-          name: 'Cabbage',
-          image: 'assets/images/dummy_image.png',
-          category: 'Vegetables',
-          price: 100,
-          unit: '1 kg',
-          description: 'This is healthy'),
-      5),
-  CartItem(
-      Product(
-          id: 1,
-          name: 'Cabbage',
-          image: 'assets/images/dummy_image.png',
-          category: 'Vegetables',
-          price: 100,
-          unit: '1 kg',
-          description: 'This is healthy'),
-      5),
-  CartItem(
-      Product(
-          id: 1,
-          name: 'Cabbage',
-          image: 'assets/images/dummy_image.png',
-          category: 'Vegetables',
-          price: 100,
-          unit: '1 kg',
-          description: 'This is healthy'),
-      5),
-];
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -60,26 +19,69 @@ class CartScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: cartItems.length,
-                  itemBuilder: (context, index) {
-                    return CartItemTile(cartItems[index]);
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: CustomButton("Checkout (Rs. 1200)", () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return CheckoutScreen();
-                  }));
-                }),
-              ),
-            ],
-          ),
+          child: GetBuilder<CartController>(builder: (controller) {
+            return controller.cartItems.isEmpty
+                ? const Center(
+                    child: Text('Your cart is empty.'),
+                  )
+                : Column(
+                    children: [
+                      Expanded(
+                          child: ListView.builder(
+                        itemCount: controller.cartItems.length,
+                        itemBuilder: (context, index) {
+                          return CartItemTile(controller.cartItems[index]);
+                        },
+                      )),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Obx(
+                          () => CustomButton(
+                              "Checkout (Rs. ${Get.find<CartController>().total.value})",
+                              () {
+                            if (Get.find<AppController>().isLoggedIn.isTrue) {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return CheckoutScreen();
+                              }));
+                            } else {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: const Text('Login'),
+                                        content: const Text(
+                                            'Please login to continue.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text(
+                                              'Cancel',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              Get.to(() => LoginScreen());
+                                            },
+                                            child: const Text(
+                                              'Login',
+                                              style:
+                                                  TextStyle(color: greenColor),
+                                            ),
+                                          ),
+                                        ],
+                                      ));
+                            }
+                          }),
+                        ),
+                      ),
+                    ],
+                  );
+          }),
         ));
   }
 }

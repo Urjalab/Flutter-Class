@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/data/models/product/product.dart';
+import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 import 'package:grocery_nepal/modules/product_details/product_details_screen.dart';
 import 'package:grocery_nepal/widgets/loading.dart';
 
@@ -88,6 +89,7 @@ class ProductTile extends StatelessWidget {
                       backgroundColor: greenColor,
                       duration: Duration(milliseconds: 1200),
                     ));
+                    Get.find<CartController>().addToCart(product);
                   },
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 5),

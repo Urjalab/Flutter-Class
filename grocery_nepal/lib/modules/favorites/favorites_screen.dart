@@ -35,8 +35,6 @@ class FavoritesScreen extends StatelessWidget {
                             leading: CachedNetworkImage(
                               imageUrl:
                                   imageUrl + controller.favorites[index].image,
-                              placeholder: (context, url) =>
-                                  const Loading(size: 100),
                               errorWidget: (context, url, error) => Image.asset(
                                 'assets/images/dummy_image.png',
                                 fit: BoxFit.cover,

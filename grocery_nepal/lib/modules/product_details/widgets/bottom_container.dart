@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/data/models/product/product.dart';
 import 'package:grocery_nepal/modules/favorites/favorites_controller.dart';
+import 'package:grocery_nepal/modules/product_details/product_detail_controller.dart';
 
 import '../../../constants.dart';
 
@@ -29,6 +30,7 @@ class BottomContainer extends StatelessWidget {
                       duration: Duration(milliseconds: 2000),
                       backgroundColor: greenColor),
                 );
+                Get.find<ProductDetailController>().addToCart();
               },
               child: const Text(
                 'Add to Cart',

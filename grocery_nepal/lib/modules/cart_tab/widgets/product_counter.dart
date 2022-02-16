@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order/cart_item.dart';
+import 'package:grocery_nepal/modules/cart_tab/cart_controller.dart';
 
 class ProductCounter extends StatefulWidget {
-  const ProductCounter(this.quantity, {Key? key}) : super(key: key);
-  final int quantity;
+  const ProductCounter(this.item, {Key? key}) : super(key: key);
+  final CartItem item;
   @override
   State<ProductCounter> createState() => _ProductCounterState();
 }
@@ -14,7 +17,7 @@ class _ProductCounterState extends State<ProductCounter> {
   @override
   void initState() {
     super.initState();
-    _count = widget.quantity;
+    _count = widget.item.quantity;
   }
 
   @override
@@ -29,6 +32,8 @@ class _ProductCounterState extends State<ProductCounter> {
                 _count--;
               });
             }
+            Get.find<CartController>()
+                .changeQuantity(widget.item.product, _count);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -56,6 +61,8 @@ class _ProductCounterState extends State<ProductCounter> {
             setState(() {
               _count++;
             });
+            Get.find<CartController>()
+                .changeQuantity(widget.item.product, _count);
           },
           child: Container(
             decoration: BoxDecoration(
