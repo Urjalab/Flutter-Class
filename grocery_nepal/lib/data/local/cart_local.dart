@@ -24,13 +24,12 @@ class CartLocal {
     }
   }
 
-  static bool set(List<CartItem> cartItems) {
+  static Future<bool> set(List<CartItem> cartItems) async {
     var data = cartItems.map((item) => item.toJson()).toList();
     var valueString = json.encode(data);
     try {
       var prefs = Get.find<AppController>().sharedPreference;
-      prefs.setString(key, valueString);
-      return true;
+      return await prefs.setString(key, valueString);
     } catch (e) {
       print(e);
       return false;

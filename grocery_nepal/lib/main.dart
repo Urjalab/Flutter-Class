@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'modules/cart_tab/cart_controller.dart';
 import 'modules/order_tab/order_controller.dart';
 
 void main() async {
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         Get.put(OrderController());
         Get.put(AppController(sharedPreferences), permanent: true);
         Get.put(FavoritesController(), permanent: true);
+        Get.put(CartController(), permanent: true);
       }),
       initialRoute: '/',
       routes: {
