@@ -60,4 +60,10 @@ class CartController extends GetxController {
     updateCart();
     update();
   }
+
+  void clearCart() {
+    cartItems = [];
+    updateCart();
+    update();
+  }
 }

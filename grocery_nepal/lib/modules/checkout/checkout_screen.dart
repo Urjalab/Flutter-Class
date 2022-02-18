@@ -18,27 +18,31 @@ class CheckoutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Checkout"),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
+      body: Obx(
+        () => controller.isLoading.isTrue
+            ? const Loading()
+            : Column(
                 children: [
-                  OrderSummary(controller.cartItems),
-                  ShippingAddress(),
-                  Obx(() =>
-                      PaymentMethodContainer(isCod: controller.isCod.value)),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          OrderSummary(controller.cartItems),
+                          const ShippingAddress(),
+                          Obx(() => PaymentMethodContainer(
+                              isCod: controller.isCod.value)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Obx(() => controller.isCod.isTrue
+                        ? CustomButton('Confirm Order', controller.checkout)
+                        : CustomButton('Pay Now', controller.checkout)),
+                  )
                 ],
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Obx(() => controller.isCod.isTrue
-                ? CustomButton('Confirm Order', controller.checkout)
-                : CustomButton('Pay Now', controller.checkout)),
-          )
-        ],
       ),
     );
   }

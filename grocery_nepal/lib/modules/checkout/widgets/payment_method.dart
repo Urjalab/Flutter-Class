@@ -41,7 +41,7 @@ class PaymentMethodContainer extends StatelessWidget {
             "Payment Method",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: 17,
             ),
           ),
           const SizedBox(

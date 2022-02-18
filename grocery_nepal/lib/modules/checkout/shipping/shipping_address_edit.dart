@@ -1,31 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:grocery_nepal/modules/checkout/checkout_controller.dart';
 import 'package:grocery_nepal/widgets/custom_button.dart';
 import 'package:grocery_nepal/widgets/input_field.dart';
 
-class ShippingAddressEdit extends StatefulWidget {
-  ShippingAddressEdit({ Key? key }) : super(key: key);
-
-  @override
-  State<ShippingAddressEdit> createState() => _ShippingAddressEditState();
-}
-
-class _ShippingAddressEditState extends State<ShippingAddressEdit> {
-  final List<String> provinces= [
-    "Province 1",
-    "Madesh",
-    "Bagmati",
-    "Lumbini",
-    "Karnali",
-    "Sudur Pashchim",
-  ];
-  String? selectedProvince;
+class ShippingAddressEdit extends StatelessWidget {
+  ShippingAddressEdit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   
+    final controller = Get.find<CheckoutController>();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shipping Address"),
+        title: const Text("Shipping Address"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -37,48 +24,48 @@ class _ShippingAddressEditState extends State<ShippingAddressEdit> {
             children: [
               InputField(
                 "Phone Number",
+                controller: controller.phoneController,
                 inputType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
               ),
               DropdownButtonFormField(
-                decoration: InputDecoration(
-                  labelText: "Province",
-                  labelStyle: TextStyle(
-                    color: Colors.green,
-                  )
-                ),
-                value: selectedProvince,
-                items: provinces.map<DropdownMenuItem<String>>(
-                  (String value) => DropdownMenuItem<String>(
-                    child: Text(value),
-                    value:value,
-                  )
-                ).toList(),
-                onChanged: (String? newValue){
-                  setState(() {
-                    selectedProvince=newValue;
-                  });
+                decoration: const InputDecoration(
+                    labelText: "Province",
+                    labelStyle: TextStyle(
+                      color: Colors.green,
+                    )),
+                value: controller.selectedProvince,
+                items: controller.provinces
+                    .map<DropdownMenuItem<String>>(
+                        (String value) => DropdownMenuItem<String>(
+                              child: Text(value),
+                              value: value,
+                            ))
+                    .toList(),
+                onChanged: (String? newValue) {
+                  controller.selectedProvince = newValue;
                 },
               ),
               InputField(
                 "City",
+                controller: controller.cityController,
                 textInputAction: TextInputAction.next,
               ),
               InputField(
                 "Address",
+                controller: controller.addressController,
                 inputType: TextInputType.streetAddress,
                 textInputAction: TextInputAction.next,
               ),
               const SizedBox(
-                height:20,
+                height: 20,
               ),
-
-              CustomButton("Update", (){
-                Navigator.pop(context);
+              CustomButton("Update", () {
+                controller.updateAddress();
               })
             ],
           ),
-          ),
+        ),
       ),
     );
   }

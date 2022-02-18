@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order/order_detail.dart';
+import 'package:grocery_nepal/modules/order_details/order_details_screen.dart';
 import 'package:grocery_nepal/widgets/widgets.dart';
 import 'package:lottie/lottie.dart';
 
 class OrderSuccess extends StatelessWidget {
-  const OrderSuccess({Key? key}) : super(key: key);
+  const OrderSuccess(this.orderDetail, {Key? key}) : super(key: key);
+  final OrderDetail orderDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,10 @@ class OrderSuccess extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 20),
-              CustomButton('View Order Detail', () {}),
+              CustomButton('View Order Detail', () {
+                Get.to(() => const OrderDetailsScreen(),
+                    arguments: orderDetail);
+              }),
               const SizedBox(height: 10),
               TextButton(
                 child: const Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:intl/intl.dart';
 import 'order_detail_controller.dart';
 import 'widgets/order_summary.dart';
 import 'package:grocery_nepal/widgets/widgets.dart';
@@ -49,7 +50,11 @@ class OrderDetailsScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                          "${controller.orderDetail!.dateOrdered}"),
+                                        DateFormat('yyyy-MM-dd').format(
+                                            DateTime.parse(controller
+                                                    .orderDetail!.dateOrdered ??
+                                                DateTime.now().toString())),
+                                      ),
                                     ],
                                   ),
                                   Text(
@@ -74,30 +79,35 @@ class OrderDetailsScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
-                                    children: [
-                                      const Text("Delivered To :"),
-                                      Text(
-                                        controller
-                                                .orderDetail!.shippingAddress ??
-                                            'NA',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text("Delivered To :"),
+                                        Text(
+                                          controller.orderDetail!
+                                                  .shippingAddress ??
+                                              'NA',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                  Column(
-                                    children: [
-                                      const Text("Payment Method"),
-                                      Text(
-                                        controller.orderDetail!.paymentMethod ??
-                                            'NA',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text("Payment Method"),
+                                        Text(
+                                          controller
+                                                  .orderDetail!.paymentMethod ??
+                                              'NA',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),

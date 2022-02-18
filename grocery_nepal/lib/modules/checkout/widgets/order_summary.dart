@@ -25,7 +25,7 @@ class OrderSummary extends StatelessWidget {
             "Order Summary",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: 17,
             ),
           ),
           const SizedBox(height: 5),
