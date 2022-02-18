@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
 import 'package:grocery_nepal/modules/checkout/checkout_controller.dart';
 
-// enum PaymentMethod { cod, khalti }
-
 class PaymentMethodContainer extends StatelessWidget {
   const PaymentMethodContainer({required this.isCod, Key? key})
       : super(key: key);
@@ -51,7 +49,7 @@ class PaymentMethodContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               getPaymentTile(
-                image: "assets/icons/khalti.png",
+                image: "assets/icons/esewa.png",
                 isSelected: !isCod,
                 onPress: () {
                   Get.find<CheckoutController>().isCod(false);

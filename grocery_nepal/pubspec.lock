@@ -85,6 +85,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  esewa_pnp:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "9b965a7dc958e16f45c799d35285eca39ae353d0"
+      url: "git@github.com:aryalg/esewa_pnp.git"
+    source: git
+    version: "1.1.0"
   ffi:
     dependency: transitive
     description:

@@ -23,6 +23,10 @@ dependencies:
   cached_network_image: ^3.2.0
   shared_preferences: ^2.0.13
   intl: ^0.17.0
+  esewa_pnp:
+      git:
+          url: git@github.com:aryalg/esewa_pnp.git
+          ref: master
   
 
 dev_dependencies:
