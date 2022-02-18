@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/data/models/order/cart_item.dart';
 
 class OrderSummary extends StatelessWidget {
-  const OrderSummary({Key? key}) : super(key: key);
+  const OrderSummary(this.cartItems, {Key? key}) : super(key: key);
+  final List<CartItem> cartItems;
+
+  double getTotal() {
+    double total = 0;
+    for (var item in cartItems) {
+      total += item.product.price * item.quantity;
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,7 @@ class OrderSummary extends StatelessWidget {
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 3,
+              itemCount: cartItems.length,
               itemBuilder: (context, index) => Card(
                     margin: const EdgeInsets.symmetric(vertical: 5),
                     child: Padding(
@@ -34,17 +44,17 @@ class OrderSummary extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Cabbage",
-                                style: TextStyle(
+                                cartItems[index].product.name,
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                               Text(
-                                "1 KG",
-                                style: TextStyle(color: Colors.grey),
+                                cartItems[index].product.unit,
+                                style: const TextStyle(color: Colors.grey),
                               ),
                               Text(
-                                "RS 100",
-                                style: TextStyle(
+                                "RS ${cartItems[index].product.price}",
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
                                     color: greenColor),
@@ -52,8 +62,8 @@ class OrderSummary extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            "x1",
-                            style: TextStyle(
+                            "x ${cartItems[index].quantity}",
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                                 color: greenColor),
@@ -65,8 +75,8 @@ class OrderSummary extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "Total: Rs 5000",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              "Total: Rs ${getTotal()}",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
         ],

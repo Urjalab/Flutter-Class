@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:grocery_nepal/constants.dart';
+import 'package:grocery_nepal/modules/checkout/checkout_controller.dart';
 
-enum PaymentMethod { cod, khalti }
+// enum PaymentMethod { cod, khalti }
 
-class PaymentMethodContainer extends StatefulWidget {
-  const PaymentMethodContainer({Key? key}) : super(key: key);
+class PaymentMethodContainer extends StatelessWidget {
+  const PaymentMethodContainer({required this.isCod, Key? key})
+      : super(key: key);
 
-  @override
-  State<PaymentMethodContainer> createState() => _PaymentMethodState();
-}
+  final bool isCod;
 
-class _PaymentMethodState extends State<PaymentMethodContainer> {
   Widget getPaymentTile(
       {required String image,
       required bool isSelected,
@@ -29,8 +29,6 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
       ),
     ));
   }
-
-  PaymentMethod paymentMethod = PaymentMethod.cod;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +52,9 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
             children: [
               getPaymentTile(
                 image: "assets/icons/khalti.png",
-                isSelected: paymentMethod == PaymentMethod.khalti,
+                isSelected: !isCod,
                 onPress: () {
-                  setState(() {
-                    paymentMethod = PaymentMethod.khalti;
-                  });
+                  Get.find<CheckoutController>().isCod(false);
                 },
               ),
               const SizedBox(
@@ -66,11 +62,9 @@ class _PaymentMethodState extends State<PaymentMethodContainer> {
               ),
               getPaymentTile(
                 image: "assets/icons/cod.png",
-                isSelected: paymentMethod == PaymentMethod.cod,
+                isSelected: isCod,
                 onPress: () {
-                  setState(() {
-                    paymentMethod = PaymentMethod.cod;
-                  });
+                  Get.find<CheckoutController>().isCod(true);
                 },
               ),
             ],
